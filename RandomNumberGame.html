@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="en" >
+	<head>
+	  <meta charset="UTF-8">
+	  <title>Random Number Game</title>
+	</head>
+<body>
+
+<div id="division">
+	<h1>NUMBER GAME</h1>
+	  <p id="moneyLeft"></p>
+	  <div id="PlayGame">
+	  <div id ="randomNumbersNum1" class="random"></div>
+	  <div id ="randomNumbersNum2" class="random"></div>
+	  <div id ="randomNumbersNum3" class="random"></div>
+	  </div><br>
+	<span id="won"></span><br>
+	<section>		
+	
+		<button id="message" type="button" onclick="randomNum(0,10)">Start</button>
+	</section>
+
+<script>
+			var  INR= 1000;
+			document.getElementById('moneyLeft').innerHTML = "You have " + INR + " INR";
+		function randomNum() {
+				var Num1 = Math.floor(Math.random() * 10);
+				var Num2 = Math.floor(Math.random() * 10);
+				var Num3 = Math.floor(Math.random() * 10);
+				
+				document.getElementById('randomNumbersNum1').innerHTML = Num1;
+				document.getElementById('randomNumbersNum2').innerHTML = Num2;
+				document.getElementById('randomNumbersNum3').innerHTML = Num3 ;
+						
+		  if((((Num1%2)==0) && ((Num2%2)==0) && ((Num3%2)==0))&& ((Num1!=Num2) || (Num1!=Num3))){
+				INR+=200;
+				document.getElementById('moneyLeft').innerHTML = "You have " + (INR) + " INR.";
+				document.getElementById('won').innerHTML = "You were lucky this time,you got 300 INR as all numbers are even.";
+			}
+			else if((((Num1%2)!=0) && ((Num2%2)!=0) && ((Num3%2)!=0))&& ((Num1!=Num2) || (Num1!=Num3))){
+				INR+=200;
+				document.getElementById('moneyLeft').innerHTML = "You have " + (INR) + " INR.";
+				document.getElementById('won').innerHTML = "You were lucky this time,you got 300 INR as all numbers are odd.";
+			}
+			else if((((Math.abs(Num1-Num2)==1)&&(Math.abs(Num2-Num3)==1))||((Math.abs(Num1-Num3)==1)&&(Math.abs(Num2-Num3)==1))||((Math.abs(Num1-Num2)==1)&&(Math.abs(Num1-Num3)==1))) && ((Num1!=Num2) && (Num1!=Num3) && (Num2!=Num3)))
+			{
+				INR+=700;
+				document.getElementById('moneyLeft').innerHTML = "You have " + (INR) + " INR.";
+				document.getElementById('won').innerHTML = "You were lucky this time, you got 800 INR as all the numbers have difference 1.";
+			}
+			else if((Num1==Num2)&& (Num1==Num3)){
+				INR+=900;
+				document.getElementById('moneyLeft').innerHTML = "You have " + (INR) + " INR.";
+				document.getElementById('won').innerHTML = "You were lucky this time,you got 1000 INR as all numbers are same.";
+			}
+			else if(INR<=100){
+			document.getElementById('message').innerHTML = "Game Over";
+				document.getElementById('message').disabled=true;}
+			else {
+				INR-=100;
+				document.getElementById('moneyLeft').innerHTML = "You have " + (INR) + " INR";
+				document.getElementById('won').innerHTML = "You were not lucky this time.";
+			}
+			
+			
+		}
+</script>
+</div>
+</body>
+</html>
